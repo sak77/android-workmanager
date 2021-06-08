@@ -47,6 +47,8 @@ class BlurWorker(context: Context, params: WorkerParameters): Worker(context, pa
             Result.success(outputData)
         } catch (throwable: Throwable) {
             Timber.e(throwable, "Error applying blur")
+            //Here you can also use Result.retry() to try to retry the failed operation
+            //based upon backoff criteria 
             Result.failure()
         }
     }

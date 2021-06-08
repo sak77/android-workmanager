@@ -124,6 +124,7 @@ class BlurViewModel(application: Application) : AndroidViewModel(application) {
          */
         val saveImage = OneTimeWorkRequest.Builder(SaveImageToFileWorker::class.java)
                 .setConstraints(constraints)
+                .setBackoffCriteria(BackoffPolicy.LINEAR)
                 .addTag(TAG_OUTPUT)
                 .build()
         continuation = continuation.then(saveImage)
